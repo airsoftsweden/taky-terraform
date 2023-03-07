@@ -8,6 +8,11 @@ variable "ssh_key" {
   type = string
 }
 
+variable "gh_token" {
+  default = "NONE"
+  type = string  
+}
+
 variable "ssh_fingerprint" {
   type = string  
 }
