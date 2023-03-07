@@ -17,7 +17,8 @@ resource "digitalocean_droplet" "atak-docker-do" {
   provisioner "remote-exec" {
     inline = [
       "apt update",
-      "apt install -y git"
+      "apt install -y git",
+      "apt install -y ansible"
     ]
   }
 
