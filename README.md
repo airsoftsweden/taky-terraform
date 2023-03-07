@@ -1,8 +1,9 @@
 # taky-terraform
 Terraform Repo for the public TAKY Setup
 
+## Howto
 
-## Secrets File
+### Secrets File
 
 Create a file called secrets.tfvars
 ```
