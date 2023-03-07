@@ -28,13 +28,13 @@ resource "digitalocean_droplet" "atak-docker-do" {
     ]
   }
 
-  # provisioner "remote-exec" {
-  #   inline = [
-  #     "export GH_TOKEN=${var.gh_token}",
-  #     "cd /opt/taky-ansible/ansible",
-  #     "ansible-playbook -i ansible_hosts taky.yml"
-  #   ]
-  # }
+  provisioner "remote-exec" {
+    inline = [
+      "export GH_TOKEN=${var.gh_token}",
+      "cd /opt/taky-ansible/ansible",
+      "ansible-playbook -i ansible_hosts taky.yml"
+    ]
+  }
 }
 
 resource "namecheap_domain_records" "milsim-airsoftsweden" {
