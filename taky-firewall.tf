@@ -12,18 +12,6 @@ resource "digitalocean_firewall" "atak-docker-do" {
 
   inbound_rule {
     protocol         = "tcp"
-    port_range       = "1881"
-    source_addresses = ["0.0.0.0/0"]
-  }
-
-  inbound_rule {
-    protocol         = "tcp"
-    port_range       = "3000"
-    source_addresses = ["0.0.0.0/0"]
-  }
-
-  inbound_rule {
-    protocol         = "tcp"
     port_range       = "8089"
     source_addresses = ["0.0.0.0/0"]
   }
@@ -34,22 +22,20 @@ resource "digitalocean_firewall" "atak-docker-do" {
     source_addresses = ["0.0.0.0/0"]
   }
 
-
-
   outbound_rule {
     protocol              = "tcp"
     port_range            = "all"
-    destination_addresses = ["0.0.0.0/0", "::/0"]
+    destination_addresses = ["0.0.0.0/0"]
   }
 
   outbound_rule {
     protocol              = "udp"
     port_range            = "all"
-    destination_addresses = ["0.0.0.0/0", "::/0"]
+    destination_addresses = ["0.0.0.0/0"]
   }
 
   outbound_rule {
     protocol              = "icmp"
-    destination_addresses = ["0.0.0.0/0", "::/0"]
+    destination_addresses = ["0.0.0.0/0"]
   }
 }
