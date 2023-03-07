@@ -13,11 +13,28 @@ resource "digitalocean_droplet" "atak-docker-do" {
     private_key = file(var.ssh_key)
     timeout = "2m"
   }
+
+  provisioner "remote-exec" {
+    inline = [
+      "apt update",
+      "apt install -y git ansible"
+    ]
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "cd /opt",
+      "git clone https://github.com/airsoftsweden/taky-ansible.git"
+    ]
+  }
+
+  # provisioner "remote-exec" {
+  #   inline = [
+  #     "cd /opt/taky-ansible/ansible",
+  #     "ansible-playbook -i ansible_hosts taky.yml"
+  #   ]
+  # }
 }
-
-
-
-
 
 resource "namecheap_domain_records" "milsim-airsoftsweden" {
   domain = "airsoftsweden.com"
