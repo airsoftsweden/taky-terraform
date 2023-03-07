@@ -33,6 +33,7 @@ resource "digitalocean_droplet" "atak-docker-do" {
     inline = [
       "export GH_TOKEN=${var.gh_token}",
       "cd /opt/taky-ansible/ansible",
+      "ansible-galaxy collection install -r requirements.yml",
       "ansible-playbook -i ansible_hosts taky.yml"
     ]
   }
