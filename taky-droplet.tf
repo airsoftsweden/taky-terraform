@@ -30,6 +30,8 @@ resource "digitalocean_droplet" "atak-docker-do" {
       "echo 'export TAKY_SERVER=${var.servers[count.index]}' >> .bash_profile",
       "echo 'export IP=${var.servers[count.index]}.airsoftsweden.com' >> .bash_profile",
       "echo 'export ID=Public-ATAK-${var.servers[count.index]}' >> .bash_profile",
+      "echo 'export CERT_PASS=${var.cert_pass}' >> .bash_profile",
+      "echo 'export KEY_PW=Public-ATAK-${var.cert_pass}' >> .bash_profile"
     ]
   }
 
@@ -46,6 +48,8 @@ resource "digitalocean_droplet" "atak-docker-do" {
     inline = [
       "export GH_TOKEN=${var.gh_token}",
       "export TAKY_SERVER=${var.servers[count.index]}",
+      "export CERT_PASS=${var.cert_pass}",
+      "export KEY_PW=${var.cert_pass}",
       "cd /opt/taky-ansible/ansible",
       "ansible-galaxy collection install -r requirements.yml",
       "ansible-playbook -i ansible_hosts taky.yml"

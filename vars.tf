@@ -13,6 +13,10 @@ variable "gh_token" {
   type = string  
 }
 
+variable "cert_pass" {
+  type = string
+}
+
 variable "ssh_fingerprint" {
   type = string  
 }
@@ -34,3 +38,4 @@ variable "servers" {
   type = list(string)
   default = ["red", "blue", "green"]
 }
+
