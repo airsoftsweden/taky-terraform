@@ -14,6 +14,7 @@ variable "gh_token" {
 }
 
 variable "cert_pass" {
+  default = "atakatak"
   type = string
 }
 
