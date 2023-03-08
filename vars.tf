@@ -37,6 +37,6 @@ variable "namecheap_api_key" {
 variable "servers" {
   description = "Create Servers with these names"
   type = list(string)
-  default = ["red", "blue", "green"]
+  default = ["red", "green", "blue"]
 }
 
