@@ -27,6 +27,7 @@ resource "digitalocean_droplet" "atak-docker-do" {
     inline = [
       "cd /root",
       "echo 'export GH_TOKEN=${var.gh_token}' > .bash_profile",
+      "echo 'export TAKY_SERVER=${var.servers[count.index]}' >> .bash_profile",
       "echo 'export IP=${var.servers[count.index]}.airsoftsweden.com' >> .bash_profile",
       "echo 'export ID=Public-ATAK-${var.servers[count.index]}' >> .bash_profile",
     ]
