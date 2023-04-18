@@ -22,6 +22,30 @@ resource "digitalocean_firewall" "atak-docker-do" {
     source_addresses = ["0.0.0.0/0"]
   }
 
+  inbound_rule { # Taky-RTSP - RTMP Protocol
+    protocol = "tcp"
+    port_range = "1935"
+    source_addresses = [ "0.0.0.0/0" ]
+  }
+
+  inbound_rule { # Taky-RTSP - RTSP Protocol
+    protocol = "tcp"
+    port_range = "8554"
+    source_addresses = [ "0.0.0.0/0" ]
+  }
+
+  inbound_rule { # Taky-RTSP - HLS Protocol
+    protocol = "tcp"
+    port_range = "8888"
+    source_addresses = [ "0.0.0.0/0" ]
+  }
+  
+  inbound_rule { # Taky-RTSP - API endpoint
+    protocol = "tcp"
+    port_range = "9997"
+    source_addresses = [ "0.0.0.0/0" ]
+  }
+
   outbound_rule {
     protocol              = "tcp"
     port_range            = "all"
