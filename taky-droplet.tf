@@ -31,27 +31,34 @@ resource "digitalocean_droplet" "atak-docker-do" {
       "echo 'export IP=${var.servers[count.index]}.airsoftsweden.com' >> .bash_profile",
       "echo 'export ID=Public-ATAK-${var.servers[count.index]}' >> .bash_profile",
       "echo 'export KEY_PW=${var.cert_pass}' >> .bash_profile",
-      "echo 'export SERVER_P12_PW=${var.cert_pass}' >> .bash_profile"
-      
+      "echo 'export SERVER_P12_PW=${var.cert_pass}' >> .bash_profile",
+      "echo 'export ENDPOINT=${var.map_endpoint}' >> .bash_profile",
+      "echo 'export TELEGRAM_TOKEN=${var.telegram_token}' >> .bash_profile"
     ]
   }
 
   provisioner "remote-exec" {
     inline = [
       "cd /opt",
-      "git clone https://github.com/airsoftsweden/taky-ansible.git"
+      "git clone https://${var.gh_token}@github.com/airsoftsweden/taky-ansible.git"
     ]
   }
 
   provisioner "remote-exec" {
     inline = [
-      "export GH_TOKEN=${var.gh_token}",
-      "export TAKY_SERVER=${var.servers[count.index]}",
-      "export KEY_PW=${var.cert_pass}",
-      "export SERVER_P12_PW=${var.cert_pass}",
-      "cd /opt/taky-ansible/ansible",
-      "ansible-galaxy collection install -r requirements.yml",
-      "ansible-playbook -i ansible_hosts taky.yml"
+      "export GH_TOKEN=${var.gh_token}'",
+      "export TAKY_SERVER=${var.servers[count.index]}'",
+      "export IP=${var.servers[count.index]}.airsoftsweden.com'",
+      "export ID=Public-ATAK-${var.servers[count.index]}'",
+      "export KEY_PW=${var.cert_pass}'",
+      "export SERVER_P12_PW=${var.cert_pass}'",
+      "export ENDPOINT=${var.map_endpoint}'",
+      "export TELEGRAM_TOKEN=${var.telegram_token}'",
+      "cd /opt/taky-ansible/ansible"#,
+      #"ansible-galaxy collection install -r requirements.yml",
+      #"ansible-playbook -i ansible_hosts taky.yml",
+      #"sleep 30",
+      #"ansible-playbook -i ansible_hosts taky-services.yml"
     ]
   }
 }

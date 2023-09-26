@@ -10,7 +10,8 @@ variable "ssh_key" {
 
 variable "gh_token" {
   default = "NONE"
-  type = string  
+  type = string
+  sensitive = true
 }
 
 variable "cert_pass" {
@@ -32,6 +33,17 @@ variable "namecheap_api_user" {
 
 variable "namecheap_api_key" {
   type = string
+  sensitive = true
+}
+
+variable "telegram_token" {
+  type = string
+  sensitive = true  
+}
+
+variable "map_endpoint" {
+  type = string
+  sensitive = true  
 }
 
 variable "servers" {
