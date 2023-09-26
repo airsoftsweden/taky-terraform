@@ -54,11 +54,11 @@ resource "digitalocean_droplet" "atak-docker-do" {
       "export SERVER_P12_PW=${var.cert_pass}'",
       "export ENDPOINT=${var.map_endpoint}'",
       "export TELEGRAM_TOKEN=${var.telegram_token}'",
-      "cd /opt/taky-ansible/ansible"#,
-      #"ansible-galaxy collection install -r requirements.yml",
-      #"ansible-playbook -i ansible_hosts taky.yml",
-      #"sleep 30",
-      #"ansible-playbook -i ansible_hosts taky-services.yml"
+      "cd /opt/taky-ansible/ansible",
+      "ansible-galaxy collection install -r requirements.yml",
+      "ansible-playbook -i ansible_hosts taky.yml",
+      "sleep 30",
+      "ansible-playbook -i ansible_hosts taky-services.yml"
     ]
   }
 }
