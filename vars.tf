@@ -33,17 +33,18 @@ variable "namecheap_api_user" {
 
 variable "namecheap_api_key" {
   type = string
-  sensitive = true
 }
 
 variable "telegram_token" {
   type = string
-  sensitive = true  
 }
 
 variable "map_endpoint" {
   type = string
-  sensitive = true  
+}
+
+variable "email" {
+  type = string  
 }
 
 variable "servers" {
