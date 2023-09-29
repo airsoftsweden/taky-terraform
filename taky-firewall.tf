@@ -10,6 +10,18 @@ resource "digitalocean_firewall" "atak-docker-do" {
     source_addresses = ["0.0.0.0/0"]
   }
 
+  inbound_rule { # Certbot HTTP Validation
+    protocol         = "tcp"
+    port_range       = "80"
+    source_addresses = ["0.0.0.0/0"]
+  }
+
+    inbound_rule { # Certbot HTTPS Validation
+    protocol         = "tcp"
+    port_range       = "443"
+    source_addresses = ["0.0.0.0/0"]
+  }
+
   inbound_rule { # ATAK CoT SSL
     protocol         = "tcp"
     port_range       = "8089"
@@ -55,6 +67,18 @@ resource "digitalocean_firewall" "atak-docker-do" {
   inbound_rule { # Taky-RTSP-Sidercar
     protocol = "tcp"
     port_range = "1880"
+    source_addresses = [ "0.0.0.0/0" ]
+  }
+
+  inbound_rule { # Mumble
+    protocol = "udp"
+    port_range = "64738"
+    source_addresses = [ "0.0.0.0/0" ]
+  }
+
+  inbound_rule { # Mumble
+    protocol = "tcp"
+    port_range = "64738"
     source_addresses = [ "0.0.0.0/0" ]
   }
 
