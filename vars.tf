@@ -43,6 +43,11 @@ variable "map_endpoint" {
   type = string
 }
 
+variable "mumble_password" {
+  type = string
+  default = "Password123"  
+}
+
 variable "email" {
   type = string  
 }

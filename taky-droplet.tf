@@ -34,7 +34,8 @@ resource "digitalocean_droplet" "atak-docker-do" {
       "echo 'export SERVER_P12_PW=${var.cert_pass}' >> .bash_profile",
       "echo 'export ENDPOINT=${var.map_endpoint}' >> .bash_profile",
       "echo 'export TELEGRAM_TOKEN=${var.telegram_token}' >> .bash_profile",
-      "echo 'export EMAIL=${var.email}' >> .bash_profile"
+      "echo 'export EMAIL=${var.email}' >> .bash_profile",
+      "echo 'export MUMBLE_CONFIG_PASSWORD=${var.mumble_password}' >> .bash_profile"
     ]
   }
 
@@ -56,9 +57,10 @@ resource "digitalocean_droplet" "atak-docker-do" {
       "export ENDPOINT=${var.map_endpoint}",
       "export TELEGRAM_TOKEN=${var.telegram_token}",
       "export EMAIL=${var.email}",
+      "export MUMBLE_CONFIG_PASSWORD=${var.mumble_password}",
       "cd /opt/taky-ansible/ansible",
-      "ansible-galaxy collection install -r requirements.yml"#,
-      #"ansible-playbook -i ansible_hosts taky.yml",
+      "ansible-galaxy collection install -r requirements.yml",
+      "ansible-playbook -i ansible_hosts taky.yml",
       #"sleep 30",
       #"ansible-playbook -i ansible_hosts taky-services.yml"
     ]
