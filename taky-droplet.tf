@@ -62,7 +62,8 @@ resource "digitalocean_droplet" "atak-docker-do" {
       "ansible-galaxy collection install -r requirements.yml",
       "ansible-playbook -i ansible_hosts taky.yml",
       #"sleep 30",
-      #"ansible-playbook -i ansible_hosts taky-services.yml"
+      #"ansible-playbook -i ansible_hosts taky-services.yml",
+      #"ansible-playbook -i ansible_hosts taky-mumble.yml"
     ]
   }
 }
