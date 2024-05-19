@@ -61,6 +61,8 @@ resource "digitalocean_droplet" "atak-docker-do" {
       "cd /opt/taky-ansible/ansible",
       "ansible-galaxy collection install -r requirements.yml",
       "ansible-playbook -i ansible_hosts taky.yml",
+      "sleep 10",
+      "ansible-playbook -i ansible_hosts certs.yml"
       #"sleep 30",
       #"ansible-playbook -i ansible_hosts taky-services.yml",
       #"ansible-playbook -i ansible_hosts taky-mumble.yml"
@@ -69,7 +71,7 @@ resource "digitalocean_droplet" "atak-docker-do" {
 }
 
 resource "namecheap_domain_records" "milsim-airsoftsweden" {
-  domain = "airsoftsweden.com"
+  domain = "${var.domain}"
   mode = "MERGE"
   count = length(var.servers)
 

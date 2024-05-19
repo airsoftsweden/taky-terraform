@@ -52,6 +52,10 @@ variable "email" {
   type = string  
 }
 
+variable "domain" {
+  type = string
+}
+
 variable "servers" {
   description = "Create Servers with these names"
   type = list(string)
