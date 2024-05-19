@@ -26,7 +26,6 @@ resource "digitalocean_droplet" "atak-docker-do" {
   provisioner "remote-exec" {
     inline = [
       "cd /root",
-      "echo 'export GH_TOKEN=${var.gh_token}' > .bash_profile",
       "echo 'export TAKY_SERVER=${var.servers[count.index]}' >> .bash_profile",
       "echo 'export IP=${var.servers[count.index]}.airsoftsweden.com' >> .bash_profile",
       "echo 'export ID=Public-ATAK-${var.servers[count.index]}' >> .bash_profile",
@@ -42,13 +41,12 @@ resource "digitalocean_droplet" "atak-docker-do" {
   provisioner "remote-exec" {
     inline = [
       "cd /opt",
-      "git clone https://${var.gh_token}@github.com/airsoftsweden/taky-ansible.git"
+      "git clone https://github.com/airsoftsweden/taky-ansible.git"
     ]
   }
 
   provisioner "remote-exec" {
     inline = [
-      "export GH_TOKEN=${var.gh_token}",
       "export TAKY_SERVER=${var.servers[count.index]}",
       "export IP=${var.servers[count.index]}.airsoftsweden.com",
       "export ID=Public-ATAK-${var.servers[count.index]}",
@@ -63,9 +61,6 @@ resource "digitalocean_droplet" "atak-docker-do" {
       "ansible-playbook -i ansible_hosts taky.yml",
       "sleep 10",
       "ansible-playbook -i ansible_hosts certs.yml"
-      #"sleep 30",
-      #"ansible-playbook -i ansible_hosts taky-services.yml",
-      #"ansible-playbook -i ansible_hosts taky-mumble.yml"
     ]
   }
 }

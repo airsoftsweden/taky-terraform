@@ -8,12 +8,6 @@ variable "ssh_key" {
   type = string
 }
 
-variable "gh_token" {
-  default = "NONE"
-  type = string
-  sensitive = true
-}
-
 variable "cert_pass" {
   default = "atakatak"
   type = string
