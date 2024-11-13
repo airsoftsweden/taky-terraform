@@ -30,3 +30,4 @@ override.tf.json
 .terraform*
 secrets*.tfvars
 .vscode/
+output/*.zip
