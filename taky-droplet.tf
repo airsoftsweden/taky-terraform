@@ -27,12 +27,11 @@ resource "digitalocean_droplet" "atak-docker-do" {
     inline = [
       "cd /root",
       "echo 'export TAKY_SERVER=${var.servers[count.index]}' >> .bash_profile",
-      "echo 'export IP=${var.servers[count.index]}.airsoftsweden.com' >> .bash_profile",
+      "echo 'export IP=${var.servers[count.index]}.${var.domain}' >> .bash_profile",
       "echo 'export ID=Public-ATAK-${var.servers[count.index]}' >> .bash_profile",
       "echo 'export KEY_PW=${var.cert_pass}' >> .bash_profile",
       "echo 'export SERVER_P12_PW=${var.cert_pass}' >> .bash_profile",
       "echo 'export ENDPOINT=${var.map_endpoint}' >> .bash_profile",
-      "echo 'export TELEGRAM_TOKEN=${var.telegram_token}' >> .bash_profile",
       "echo 'export EMAIL=${var.email}' >> .bash_profile",
       "echo 'export MUMBLE_CONFIG_SERVERPASSWORD=${var.mumble_password}' >> .bash_profile"
     ]
@@ -48,12 +47,11 @@ resource "digitalocean_droplet" "atak-docker-do" {
   provisioner "remote-exec" {
     inline = [
       "export TAKY_SERVER=${var.servers[count.index]}",
-      "export IP=${var.servers[count.index]}.airsoftsweden.com",
+      "export IP=${var.servers[count.index]}.${var.domain}",
       "export ID=Public-ATAK-${var.servers[count.index]}",
       "export KEY_PW=${var.cert_pass}",
       "export SERVER_P12_PW=${var.cert_pass}",
       "export ENDPOINT=${var.map_endpoint}",
-      "export TELEGRAM_TOKEN=${var.telegram_token}",
       "export EMAIL=${var.email}",
       "export MUMBLE_CONFIG_SERVERPASSWORD=${var.mumble_password}",
       "cd /opt/taky-ansible/ansible",

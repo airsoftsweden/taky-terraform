@@ -29,10 +29,6 @@ variable "namecheap_api_key" {
   type = string
 }
 
-variable "telegram_token" {
-  type = string
-}
-
 variable "map_endpoint" {
   type = string
 }
