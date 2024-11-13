@@ -58,9 +58,15 @@ resource "digitalocean_droplet" "atak-docker-do" {
       "ansible-galaxy collection install -r requirements.yml",
       "ansible-playbook -i ansible_hosts taky.yml",
       "sleep 10",
-      "ansible-playbook -i ansible_hosts certs.yml"
+      "ansible-playbook -i ansible_hosts certs.yml",
+      "sleep 10"
     ]
   }
+
+  provisioner "local-exec" {
+    command = "scp root@${var.servers[count.index]}.${var.domain}:/opt/certs/* output/"
+  }
+
 }
 
 resource "namecheap_domain_records" "milsim-airsoftsweden" {

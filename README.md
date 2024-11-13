@@ -4,7 +4,6 @@ Terraform Repo for the public TAKY Setup
 ## Howto
 
 - Install terraform and Clone this repo
-- 
 - Generate SSH Key to connect to the Server
 - DigitalOcean Account
   - Create a Digital Ocean token with **WRITE** access
@@ -13,7 +12,7 @@ Terraform Repo for the public TAKY Setup
   - Add SSH Key to Digital ocean account
     - Add the SSH-Key fingerprint to secrets.tfvars
 - Namecheap
-  - Buy a domain name to use with the servers'
+  - Buy a domain name to use with the servers
     - Generate API key
     - insert API Key and Domain name into secrets.tfvars
 
@@ -39,7 +38,8 @@ email              = "mumble-admin@example.com"
 mumble_password    = "Passw0rd123"
 ```
 
-Then run 
+Then run from the directory
 ```
+terraform init
 terraform apply -var-file='secrets.tfvars'
 ```
