@@ -64,7 +64,7 @@ resource "digitalocean_droplet" "atak-docker-do" {
   }
 
   provisioner "local-exec" {
-    command = "scp root@${var.servers[count.index]}.${var.domain}:/opt/certs/* output/"
+    command = "scp root@${self.ipv4_address}:/opt/certs/*.zip output/"
   }
 
 }
