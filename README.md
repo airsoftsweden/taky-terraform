@@ -43,3 +43,9 @@ Then run from the directory
 terraform init
 terraform apply -var-file='secrets.tfvars'
 ```
+To start additional services login and run from the server
+```
+ssh root@blue.example.com
+cd /opt/taky-ansible/ansible
+ansible-playbook -i ansible_hosts taky-services.yml
+```
